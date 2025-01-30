@@ -78,6 +78,7 @@ public class Date {
         return false;
     }
 
+    // Constructors
     Date(String date){
         if (isISO8601(date)) {
             
@@ -101,4 +102,20 @@ public class Date {
             throw new IllegalArgumentException(year+"-"+month+"-"+day+" is not a valid date.");
         }
     }
+
+    // Getters
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth(){
+        return month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+
 }
