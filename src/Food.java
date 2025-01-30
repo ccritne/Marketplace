@@ -36,6 +36,10 @@ public class Food extends Element {
         this.values = values;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + ";"+expirationDate.toString()+";"+values.toString();
+    }
 
     
 }

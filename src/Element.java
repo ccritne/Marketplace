@@ -84,4 +84,9 @@ public class Element {
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return id+";"+name+";"+price+";"+ean+";"+description+";"+stars+";"+weight;
+    }
 }

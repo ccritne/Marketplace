@@ -46,4 +46,8 @@ public class Nutritional {
         this.fats = fats;
     }
     
+    @Override
+    public String toString() {
+        return kcal+";"+carbs+";"+proteins+";"+fats;
+    }
 }
