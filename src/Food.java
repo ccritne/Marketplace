@@ -20,6 +20,16 @@ public class Food extends Element {
         this.values = values;
     }
 
+    public Food(String foodFromString) {
+        super(foodFromString);
+
+        String[] subStrings = foodFromString.split(";");
+
+        this.expirationDate = new Date(subStrings[7]);
+        this.values = new Nutritional(subStrings[8]);
+
+    }
+
     public Date getExpirationDate(){
         return expirationDate;
     }

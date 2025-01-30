@@ -26,6 +26,19 @@ public class Element {
         this.stars = stars;
         this.weight = weight;
     }
+
+    public Element(String elementFromString) {
+        String[] subStrings = elementFromString.split(";");
+
+        this.id = Long.parseLong(subStrings[0]);
+        this.name = subStrings[1];
+        this.price = Double.parseDouble(subStrings[2]);
+        this.ean = Long.parseLong(subStrings[3]);
+        this.description = subStrings[4];
+        this.stars = Integer.parseInt(subStrings[5]);
+        this.weight = Double.parseDouble(subStrings[6]);
+
+    }
     
     // Getters
     public long getId() {

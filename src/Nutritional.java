@@ -12,6 +12,17 @@ public class Nutritional {
         this.fats = fats;
     }
 
+    public Nutritional(String nutrionalFromString) {
+
+        String[] subStrings = nutrionalFromString.split(";");
+
+        this.kcal = Double.parseDouble(subStrings[0]);
+        this.carbs = Double.parseDouble(subStrings[1]);
+        this.proteins = Double.parseDouble(subStrings[2]);
+        this.fats = Double.parseDouble(subStrings[3]);
+
+    }
+
     // Getters 
     public double getKcal() {
         return kcal;
