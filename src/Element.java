@@ -28,15 +28,22 @@ public class Element {
     }
 
     public Element(String elementFromString) {
-        String[] subStrings = elementFromString.split(";");
+        
+        try {
+            String[] subStrings = elementFromString.split("#");
+            String[] elementAttributes = subStrings[1].split(";");
 
-        this.id = Long.parseLong(subStrings[0]);
-        this.name = subStrings[1];
-        this.price = Double.parseDouble(subStrings[2]);
-        this.ean = Long.parseLong(subStrings[3]);
-        this.description = subStrings[4];
-        this.stars = Integer.parseInt(subStrings[5]);
-        this.weight = Double.parseDouble(subStrings[6]);
+            this.id = Long.parseLong(elementAttributes[0]);
+            this.name = elementAttributes[1];
+            this.price = Double.parseDouble(elementAttributes[2]);
+            this.ean = Long.parseLong(elementAttributes[3]);
+            this.description = elementAttributes[4];
+            this.stars = Integer.parseInt(elementAttributes[5]);
+            this.weight = Double.parseDouble(elementAttributes[6]);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("Format error! -"+elementFromString+"-");
+        }
 
     }
     
@@ -98,8 +105,12 @@ public class Element {
         this.weight = weight;
     }
 
+    public String getType() {
+        return "Element";
+    }
+
     @Override
     public String toString() {
-        return id+";"+name+";"+price+";"+ean+";"+description+";"+stars+";"+weight;
+        return getType()+"#"+id+";"+name+";"+price+";"+ean+";"+description+";"+stars+";"+weight;
     }
 }

@@ -28,13 +28,19 @@ public class Computer extends Element{
 
     public Computer(String computerFromString) {
         super(computerFromString);
+        try{
+            String[] subStrings = computerFromString.split("#");
 
-        String[] subStrings = computerFromString.split(";");
+            String[] elementAttributes = subStrings[2].split(";");
 
-        this.processor = subStrings[7];
-        this.gpu = subStrings[8];
-        this.motherboard = subStrings[9];
-        this.ramBytes = Long.parseLong(subStrings[10]);
+            this.processor = elementAttributes[0];
+            this.gpu = elementAttributes[1];
+            this.motherboard = elementAttributes[2];
+            this.ramBytes = Long.parseLong(elementAttributes[3]);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("Format error! " + computerFromString);
+        }
     }
 
     // Getters
@@ -72,8 +78,13 @@ public class Computer extends Element{
     }
 
     @Override
+    public String getType() {
+        return "Computer";
+    }
+
+    @Override
     public String toString() {
-        return super.toString()+";"+processor+";"+gpu+";"+motherboard+";"+ramBytes;
+        return super.toString()+"#"+processor+";"+gpu+";"+motherboard+";"+ramBytes;
     }
 
 }

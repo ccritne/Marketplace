@@ -21,12 +21,19 @@ public class Laptop extends Computer{
         this.inchesScreen = inchesScreen;
     }
 
-    public Laptop(String computerFromString) {
-        super(computerFromString);
+    public Laptop(String laptopFromString) {
+        super(laptopFromString);
+        
+        try {
+            String[] subStrings = laptopFromString.split("#");
 
-        String[] subStrings = computerFromString.split(";");
+            String[] elementAttributes = subStrings[3].split(";");
 
-        this.inchesScreen = Integer.parseInt(subStrings[11]);
+            this.inchesScreen = Integer.parseInt(elementAttributes[0]);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("Format error! "+laptopFromString);
+        }
     }
 
     // Getter
@@ -40,8 +47,13 @@ public class Laptop extends Computer{
     }
 
     @Override
+    public String getType() {
+        return "Laptop";
+    }
+
+    @Override
     public String toString() {
-        return super.toString()+";"+inchesScreen;
+        return super.toString()+"#"+inchesScreen;
     }
     
     

@@ -22,12 +22,17 @@ public class Food extends Element {
 
     public Food(String foodFromString) {
         super(foodFromString);
+        try{
+            String[] subStrings = foodFromString.split("#");
 
-        String[] subStrings = foodFromString.split(";");
+            String[] elementAttributes = subStrings[2].split(";");
 
-        this.expirationDate = new Date(subStrings[7]);
-        this.values = new Nutritional(subStrings[8]);
-
+            this.expirationDate = new Date(elementAttributes[0]);
+            this.values = new Nutritional(elementAttributes[1]);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("Format error! "+foodFromString);
+        }
     }
 
     public Date getExpirationDate(){
@@ -47,8 +52,13 @@ public class Food extends Element {
     }
 
     @Override
+    public String getType() {
+        return "Food";
+    }
+
+    @Override
     public String toString() {
-        return super.toString() + ";"+expirationDate.toString()+";"+values.toString();
+        return super.toString() + "#" + expirationDate.toString()+";"+values.toString();
     }
 
     
