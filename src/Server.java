@@ -1,6 +1,6 @@
 public class Server extends Computer{
 
-    private String url;
+    private String endpoint;
 
     // Constructor
     Server(
@@ -15,10 +15,10 @@ public class Server extends Computer{
         String gpu, 
         String motherboard, 
         long ramBytes, 
-        String url
+        String endpoint
     ) {
         super(id, name, price, ean, description, stars, weight, processor, gpu, motherboard, ramBytes);
-        this.url = url;
+        this.endpoint = endpoint;
     }
 
     public Server(String serverFromString) {
@@ -28,7 +28,7 @@ public class Server extends Computer{
 
             String[] elementAttributes = subStrings[3].split(";");
 
-            this.url = elementAttributes[0];
+            this.endpoint = elementAttributes[0];
         } catch (Exception e) {
             e.printStackTrace();
             throw new IllegalArgumentException("Format error! "+serverFromString);
@@ -36,13 +36,13 @@ public class Server extends Computer{
     }
 
     // Getter
-    public String getUrl() {
-        return url;
+    public String getEndpoint() {
+        return endpoint;
     }
 
     // Setter
-    public void setUrl(String url) {
-        this.url = url;
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
     }
 
     @Override
@@ -52,6 +52,6 @@ public class Server extends Computer{
 
     @Override
     public String toString() {
-        return super.toString()+"#"+url;
+        return super.toString()+"#"+endpoint;
     }
 }
