@@ -35,6 +35,11 @@ public class Store {
     }
 
     public Element getElement(int index) {
+
+        if (elements.length == 0) {
+            throw new IndexOutOfBoundsException("Elements don't set.");
+        }
+
         if (index >= 0 && index < elements.length) {
             return elements[index];
         } else {
