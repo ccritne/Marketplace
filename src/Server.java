@@ -21,6 +21,14 @@ public class Server extends Computer{
         this.url = url;
     }
 
+    public Server(String computerFromString) {
+        super(computerFromString);
+
+        String[] subStrings = computerFromString.split(";");
+
+        this.url = subStrings[11];
+    }
+
     // Getter
     public String getUrl() {
         return url;

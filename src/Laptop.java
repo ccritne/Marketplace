@@ -21,6 +21,14 @@ public class Laptop extends Computer{
         this.inchesScreen = inchesScreen;
     }
 
+    public Laptop(String computerFromString) {
+        super(computerFromString);
+
+        String[] subStrings = computerFromString.split(";");
+
+        this.inchesScreen = Integer.parseInt(subStrings[11]);
+    }
+
     // Getter
     public int getInchesScreen() {
         return inchesScreen;

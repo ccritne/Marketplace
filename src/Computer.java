@@ -26,6 +26,17 @@ public class Computer extends Element{
         this.ramBytes = ramBytes;
     }
 
+    public Computer(String computerFromString) {
+        super(computerFromString);
+
+        String[] subStrings = computerFromString.split(";");
+
+        this.processor = subStrings[7];
+        this.gpu = subStrings[8];
+        this.motherboard = subStrings[9];
+        this.ramBytes = Long.parseLong(subStrings[10]);
+    }
+
     // Getters
     public String getProcessor() {
         return processor;
