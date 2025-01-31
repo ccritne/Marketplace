@@ -4,8 +4,7 @@ public class Tests {
     private static final String RED = "\u001B[31m";
     private static final String GREEN = "\u001B[32m";
 
-    public static void main(String[] args) {
-
+    private static void testDates() {
         // Date tests
         System.out.println("Test Date");
 
@@ -80,7 +79,12 @@ public class Tests {
         }
 
         System.out.println(RESET);
-        
+    }
+
+    public static void main(String[] args) {
+
+        testDates();
+
     }
     
 }
