@@ -30,6 +30,10 @@ public class Store {
         return name;
     }
 
+    public int getElementsCount() {
+        return this.elements.length;
+    }
+
     public Element[] getElements() {
         return elements;
     }
