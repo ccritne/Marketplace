@@ -68,5 +68,10 @@ public class Store {
         }
     }
 
+    @Override
+    public String toString() {
+        return id+";"+name;
+    }
+
     
 }

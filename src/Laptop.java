@@ -38,6 +38,11 @@ public class Laptop extends Computer{
     public void setInchesScreen(int inchesScreen) {
         this.inchesScreen = inchesScreen;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+";"+inchesScreen;
+    }
     
     
 }

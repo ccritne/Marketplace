@@ -71,4 +71,9 @@ public class Computer extends Element{
         this.ramBytes = ramBytes;
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+";"+processor+";"+gpu+";"+motherboard+";"+ramBytes;
+    }
+
 }

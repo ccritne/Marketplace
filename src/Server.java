@@ -38,4 +38,9 @@ public class Server extends Computer{
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+";"+url;
+    }
 }
