@@ -1,0 +1,76 @@
+@startuml
+: createNecessaryFiles();
+: user = login();
+: menu(user);
+
+: option = getOption();
+
+repeat 
+    : option = getOption();
+
+    switch (option)
+        case (Stores)
+            if (type user) then (User)
+                if (areThereStore) then (yes)
+                    : listStore();
+                    : store = selectStore();
+                    if (areThereElements(store)) then (yes)
+                        : listElementsOfStore(store);
+                        : element = selectElement();
+                        : seeElement(element);
+                        if (purchase) then (yes)
+                            : addToInventory();
+                            : removeFromStore();
+                        endif
+                    endif
+                endif
+            else (Owner)
+                if (areThereStore) then (yes)
+                    : listStore();
+                    switch (option)
+                        case (Add)
+                        : newStore = createNewStore();
+                        if (createFirstElement) then (yes)
+                            : createNewElementOf(newStore);
+                        endif
+                        case (Select)
+                        : store = selectStore();
+                        switch (option)
+                            case (Add element)
+                                : createNewElementOf(store);
+                            case (List elements)
+                                : listElements();
+                                : element = selectElement();
+                                : seeElement(element);
+                                switch (option)
+                                    case (update)
+                                        : updateElement();
+                                    case (delete)
+                                        : deleteElement();
+                                endswitch
+                        endswitch
+                        case (Delete)
+                            : deleteStore();
+                    endswitch
+                else (no)
+                    if (createFirst) then (yes)
+                        : newStore = createNewStore();
+                        if (createFirstElement) then (yes)
+                            : createNewElementOf(newStore);
+                        endif
+                    endif
+                endif
+            endif
+        case (Inventory)
+            if (type user) then (User)
+                if (areThereElements()) then (yes)
+                    : listInventory();
+                    : element = selectElement();
+                    : seeElement(element);
+                endif
+            endif
+        case (quit)
+    endswitch
+repeat while (option != quit)
+stop
+@enduml

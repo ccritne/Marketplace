@@ -1,0 +1,224 @@
+@startuml
+class Element {
+    - long id
+    - String name
+    - double price
+    - long ean
+    - String description
+    - int stars
+    - double weight
+
+    + Element(long id, String name, double price, long ean, String description, int stars, double weight)
+    + Element(String elementFromString)
+
+    + long getId()
+    + String getName()
+    + double getPrice()
+    + long getEan()
+    + String getDescription()
+    + int getStars()
+    + double getWeight()
+
+    + void setId(long id)
+    + void setName(String name)
+    + void setPrice(double price)
+    + void setEan(long ean)
+    + void setDescription(String description)
+    + void setStars(int stars)
+    + void setWeight(double weight)
+
+    + String getType()
+    
+    + String toString()
+}
+
+class Food {
+    - Date expirationDate
+    - Nutritional values
+
+    + Food(long id, String name, double price, long ean, String description, int stars, double weight, Date expirationDate, Nutritional values)
+    + Food(String foodFromString)
+
+    + Date getExpirationDate()
+    + Nutritional getNutrionalValues()
+
+    + void setExpirationDate(Date expirationDate)
+    + void setNutrionalValues(Nutritional values)
+
+    + String getType()
+    
+    + String toString()
+}
+
+class Nutritional {
+    - double kcal
+    - double carbs
+    - double proteins
+    - double fats
+
+    + Nutritional(double kcal, double carbs, double proteins, double fats)
+    + Nutritional(String nutrionalFromString)
+
+    + double getKcal()
+    + double getCarbs()
+    + double getProteins()
+    + double getFats()
+
+    + void setKcal(double kcal)
+    + void setCarbs(double carbs)
+    + void setProteins(double proteins)
+    + void setFats(double fats)
+
+    + String toString()
+}
+
+class Computer {
+    - String processor
+    - String gpu
+    - String motherboard
+    - long ramBytes
+
+    + Computer(long id, String name, double price, long ean, String description, int stars, double weight, String processor, String gpu, String motherboard, long ramBytes)
+    + Computer(String computerFromString)
+
+    + String getProcessor()
+    + String getGpu()
+    + String getMotherboard()
+    + long getRamBytes()
+
+    + void setProcessor(String processor)
+    + void setGpu(String gpu)
+    + void setMotherboard(String motherboard)
+    + void setRamBytes(long ramBytes)
+
+    + String getType()
+    
+    + String toString()
+}
+
+class Laptop {
+    - int inchesScreen
+
+    + Laptop(long id, String name, double price, long ean, String description, int stars, double weight, String processor, String gpu, String motherboard, long ramBytes, int inchesScreen)
+    + Laptop(String laptopFromString)
+
+    + int getInchesScreen()
+    + void setInchesScreen(int inchesScreen)
+
+    + String getType()
+    
+    + String toString()
+}
+
+class Server {
+    - String endpoint
+
+    + Server(long id, String name, double price, long ean, String description, int stars, double weight, String processor, String gpu, String motherboard, long ramBytes, String endpoint)
+    + Server(String serverFromString)
+
+    + String getEndpoint()
+    + void setEndpoint(String endpoint)
+
+    + String getType()
+    
+    + String toString()
+}
+
+class Store {
+    - long id
+    - String name
+    - Element[] elements
+
+    + Store(long id, String name)
+    + Store(String storeFromString)
+
+    + long getId()
+    + String getName()
+    + int getElementsCount()
+    + Element[] getElements()
+    + Element getElement(int index)
+
+    + void setId(long id)
+    + void setName(String name)
+    + void setElements(Element[] elements)
+    + void setElement(int index, Element element)
+
+    + void pushElement(Element element)
+    + void deleteElement(int index)
+
+    + String toString()
+}
+
+class Date {
+    - static int standardLength
+    - static int standardYearLength
+    - int year
+    - int month
+    - int day
+
+    + static boolean checkValidityDate(int year, int month, int day)
+    + static boolean isISO8601(String date)
+
+    + Date(String date)
+    + Date(int year, int month, int day)
+
+    + int getYear()
+    + int getMonth()
+    + int getDay()
+    
+    + String toString()
+}
+
+class User {
+    - long id
+    - String username
+    - String password
+
+    + User(long id, String username, String password)
+    + User(String userFromString)
+    
+    + long getId()
+    + String getUsername()
+    + String getPassword()
+    + void setId(int id)
+    + void setUsername(String username)
+    + void setPassword(String password)
+    
+    + String getType()
+    
+    + String toString()
+}
+
+class Owner {
+    - Store[] stores
+
+    + Owner(long id, String username, String password)
+    + Owner(String ownerFromString)
+
+    + int getNumberStores()
+    + Store[] getStores()
+    + Store getStore(int index)
+    + void setStores(Store[] stores)
+    + void setStore(int index, Store store)
+    + void pushStore(Store store)
+    + void deleteStore(Store store)
+    
+    + String getType()
+    
+    + String toString()
+}
+Owner -|> User
+
+Owner o-- "*" Store
+Store o-- "*" Element
+
+Server --|> Computer
+
+Laptop --|> Computer
+
+Computer --|> Element
+
+Food --|> Element
+Food --> Date
+Food --> Nutritional
+@enduml
