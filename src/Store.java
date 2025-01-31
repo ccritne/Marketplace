@@ -82,6 +82,46 @@ public class Store {
         }
     }
 
+    // Method to add Element at the end of array. It reallocs elements.
+    public void pushElement(Element element) {
+
+        Element[] tempElements = new Element[elements.length+1];
+
+        for(int i = 0; i < elements.length; i++) {
+            tempElements[i] = elements[i];
+        }
+
+        tempElements[elements.length] = element;
+
+        elements = tempElements;
+
+    }
+
+    // Method to remove Element at the index of array. It reallocs elements.
+    public void deleteElement(int index) {
+
+        if (elements.length == 0) {
+            throw new IndexOutOfBoundsException("Elements don't set.");
+        }
+
+        if (index < 0 || index >= elements.length) {
+            throw new IndexOutOfBoundsException("Invalid index");
+        }
+
+        Element[] tempElements = new Element[elements.length - 1];
+
+        for(int i = 0; i < index; i++) {
+            tempElements[i] = elements[i];
+        }
+
+        for(int i = index+1; i < elements.length; i++) {
+            tempElements[i-1] = elements[i];
+        }
+
+        elements = tempElements;
+
+    }
+
     @Override
     public String toString() {
         return id+";"+name;
