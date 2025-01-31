@@ -14,7 +14,7 @@ public class Nutritional {
 
     public Nutritional(String nutrionalFromString) {
 
-        String[] subStrings = nutrionalFromString.split(";");
+        String[] subStrings = nutrionalFromString.split(",");
 
         this.kcal = Double.parseDouble(subStrings[0]);
         this.carbs = Double.parseDouble(subStrings[1]);
@@ -59,6 +59,6 @@ public class Nutritional {
     
     @Override
     public String toString() {
-        return kcal+";"+carbs+";"+proteins+";"+fats;
+        return kcal+","+carbs+","+proteins+","+fats;
     }
 }
