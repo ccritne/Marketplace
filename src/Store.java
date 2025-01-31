@@ -9,6 +9,14 @@ public class Store {
         this.name = name;
     }
 
+    public Store(String storeFromString) {
+
+        String[] subStrings = storeFromString.split(";");
+
+        id = Long.parseLong(subStrings[0]);
+        name = subStrings[1];
+    }
+
     // Getters
     public long getId() {
         return id;
