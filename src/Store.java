@@ -7,6 +7,8 @@ public class Store {
     public Store(long id, String name) {
         this.id = id;
         this.name = name;
+
+        this.elements = new Element[0];
     }
 
     public Store(String storeFromString) {
@@ -15,6 +17,8 @@ public class Store {
 
         id = Long.parseLong(subStrings[0]);
         name = subStrings[1];
+
+        this.elements = new Element[0];
     }
 
     // Getters
