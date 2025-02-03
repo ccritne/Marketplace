@@ -1,4 +1,6 @@
 @startuml
+skinparam classAttributeIconSize 0
+left to right direction
 class Element {
     - long id
     - String name
@@ -150,14 +152,14 @@ class Store {
 }
 
 class Date {
-    - static int standardLength
-    - static int standardYearLength
+    - int _standardLength
+    - int _standardYearLength
     - int year
     - int month
     - int day
 
-    + static boolean checkValidityDate(int year, int month, int day)
-    + static boolean isISO8601(String date)
+    + boolean _checkValidityDate(int year, int month, int day)
+    + boolean _isISO8601(String date)
 
     + Date(String date)
     + Date(int year, int month, int day)
@@ -207,18 +209,84 @@ class Owner {
     
     + String toString()
 }
-Owner -|> User
 
-Owner o-- "*" Store
-Store o-- "*" Element
+class App {
+    - CustomScanner _scanner
+    - void _deleteFile(fileName: String)
+    - void _createFileIfNotExists(fileName: String)
+    - void _createFolderIfNotExists(folderName: String)
+    - void _createNecessaryFilesIfNotExist()
+    - int _getSizeOfFile(fileName: String)
+    + Store[] _getListStores()
+    - Element[] _getElementsOf(type: String)
+    - User[] _getUsers()
+    - void _writeToFile(fileName: String, content: String, append: boolean)
+    - User _login()
+    - void _principalMenu(user: User)
+    - void _storeSelection(user: User)
+    - Store _createNewStore()
+    - Element _createNewElementOf(store: Store)
+    - Element _createNewElementOf(store: Store, type: ElementType)
+    - void _deleteStore(store: Store)
+    - void _updateStoreOf(owner: Owner)
+    - void _updateStoreElements(store: Store)
+    - void _ownerMenuStore(store: Store, owner: Owner)
+    - void _seeStore(store: Store, user: User)
+    - void _seeElement(element: Element)
+    - String[] _generateFieldNames(element: Element)
+    - void _updateElementField(elements: Element[], element: Element, field: String)
+    - void _elementSelection(store: Store, user: User)
+    - void _seeInventory(user: User)
+    + void _main(args: String[])
+}
 
-Server --|> Computer
+class CustomScanner {
+    - scanner
+    + CustomScanner(scanner: Scanner)
+    + close()
+    + scanInt(prompt: String, errorMessage: String)
+    + scanInt(prompt: String, errorMessage: String, min: int)
+    + scanInt(prompt: String, errorMessage: String, min: int, max: int)
+    + scanLong(prompt: String, errorMessage: String)
+    + scanLong(prompt: String, errorMessage: String, min: long)
+    + scanLong(prompt: String, errorMessage: String, min: long, max: long)
+    + scanDouble(prompt: String, errorMessage: String)
+    + scanDouble(prompt: String, errorMessage: String, min: double)
+    + scanDouble(prompt: String, errorMessage: String, min: double, max: double)
+    + scanAlphanumericString(prompt: String, errorMessage: String)
+    + scanAlphanumericString(prompt: String, errorMessage: String, allowedValues: String[])
+    + scanYesNo(prompt: String, errorMessage: String)
+}
 
-Laptop --|> Computer
+class StringCheck {
+    + boolean _isAlphabetic(char character)
+    + boolean _isDigit(char character)
+    + boolean _isValidString(String string)
+}
 
-Computer --|> Element
+enum ElementType
 
-Food --|> Element
+Owner --> User
+
+Owner --> Store
+Store --> Element
+
+Server --> Computer
+Laptop --> Computer
+Computer --> Element
+
+Food --> Element
+
 Food --> Date
 Food --> Nutritional
+
+CustomScanner --> StringCheck
+
+App --> CustomScanner
+App --> User
+App --> Store
+App --> Owner
+App --> Element
+App --> ElementType
+
 @enduml
